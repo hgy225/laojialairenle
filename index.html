@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>老家来人了 - laojialairenle.com</title>
+
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Optional custom styles -->
+	<style>
+		body { padding-top: 120px; padding-bottom: 80px; }
+		.header-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 1030; background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,.1); }
+		.navbar-cats { background:#f8f9fa; border-top:1px solid #eee; border-bottom:1px solid #eee; }
+		/* dropdown on hover */
+		@media (min-width: 992px) {
+			.navbar .dropdown:hover .dropdown-menu { display: block; margin-top: 0; }
+		}
+		/* circular image */
+		.round-img { width: 220px; height: 220px; object-fit: cover; border-radius: 50%; }
+		/* footer fixed */
+		.footer-fixed { position: fixed; bottom: 0; left: 0; right: 0; background:#f8f9fa; border-top:1px solid #eaeaea; padding:10px 0; }
+		/* ensure carousel images responsive and fixed height */
+		.carousel-item img { width:100%; height:400px; object-fit:cover; }
+		.header-search { max-width:600px; width:50%; }
+		@media (max-width: 767px) {
+			.header-search { width:60%; max-width: 240px; }
+			body { padding-top: 140px; }
+		}
+	</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header-fixed">
+	<div class="container d-flex align-items-center py-2">
+		<div class="d-flex align-items-center">
+			<img src="images/logo_ small.png" alt="老家来人了" style="height:100px;width: 100px;">
+		</div>
+
+		<form class="mx-auto header-search" role="search" onsubmit="event.preventDefault(); alert('搜索功能为示例：'+ this.query.value);">
+			<div class="input-group">
+				<input name="query" type="search" class="form-control" placeholder="搜索沭阳特产、商家或关键词">
+				<button class="btn btn-outline-secondary" type="submit">搜索</button>
+			</div>
+		</form>
+
+		<div class="ms-3">
+			<a href="#" class="btn btn-outline-primary">登录</a>
+		</div>
+	</div>
+
+	<!-- 分类导航 -->
+	<nav class="navbar navbar-expand-lg navbar-cats">
+		<div class="container">
+			<!-- 新增：移动端汉堡按钮 -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+				aria-controls="navbarContent" aria-expanded="false" aria-label="切换导航">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- 把菜单放入 collapse 容器 -->
+			<div class="collapse navbar-collapse" id="navbarContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_grains" role="button" data-bs-toggle="dropdown" aria-expanded="false">主食·粮食</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_grains">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">高塘大米</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">悦来黄花菜</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">吊炉大饼</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_beancurd" role="button" data-bs-toggle="dropdown" aria-expanded="false">豆制品</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_beancurd">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">庙头干张</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">吴集粉丝</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_meatfish" role="button" data-bs-toggle="dropdown" aria-expanded="false">肉类·鱼类</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_meatfish">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">钱集老鹅</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">乔氏熏烧</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">桑墩鲫鱼</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_nuts" role="button" data-bs-toggle="dropdown" aria-expanded="false">干果·坚果</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_nuts">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">银杏核</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">颜集大红袍板栗</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">潼阳花生</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_fruits" role="button" data-bs-toggle="dropdown" aria-expanded="false">水果</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_fruits">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">潼阳西瓜</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">石榴</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_wine" role="button" data-bs-toggle="dropdown" aria-expanded="false">酒类</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_wine">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">沭阳芝麻香酒</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_snacks" role="button" data-bs-toggle="dropdown" aria-expanded="false">小吃·甜点</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_snacks">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">沭阳小果子</a></li>
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">三角花生糖</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="cat_flowers" role="button" data-bs-toggle="dropdown" aria-expanded="false">花卉产品</a>
+						<ul class="dropdown-menu" aria-labelledby="cat_flowers">
+							<li><a class="dropdown-item" href="https://www.taobao.com" target="_blank">新河花木</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<!-- 右侧可放快速链接 -->
+				<div class="d-flex">
+					<a class="nav-link" href="#">关于我们</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<!-- 主体 -->
+<main class="container mt-4">
+	<!-- 轮播 -->
+	<div id="mainCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<a href="https://www.taobao.com" target="_blank">
+					<img src="images/huangtao.png" class="d-block w-100" style="width: 1280x;height: 540px;" alt="手工特产">
+				</a>
+				<div class="carousel-caption d-none d-md-block">
+					<h5>沭阳黄桃</h5>
+					<p>本地优选，鲜甜多汁。</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<a href="https://www.taobao.com" target="_blank">
+					<img src="images/mudan.png" class="d-block w-100" style="width: 1280x;height: 540px;" alt="手工特产">
+				</a>
+				<div class="carousel-caption d-none d-md-block">
+					<h5>沭阳花卉</h5>
+					<p>花卉品种丰富，品质优良。</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<a href="https://www.taobao.com" target="_blank">
+					<img src="images/huanghuacai.png" class="d-block w-100" style="width: 1280x;height: 540px;" alt="手工特产">
+				</a>
+				<div class="carousel-caption d-none d-md-block">
+					<h5>传统手工</h5>
+					<p>匠心制作，风味独特。</p>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">上一张</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">下一张</span>
+		</button>
+	</div>
+
+	<!-- 沭阳 200字简介 + 圆形图片 -->
+	<section class="row align-items-center mb-4">
+		<div class="col-md-8">
+			<h3>中国·沭阳简介</h3>
+			<p>
+				沭阳地处江苏北部、淮河与运河之间，是一片物产丰富、民风淳朴的土地。这里四季分明，农业资源优越，果蔬丰收，花卉产业发达，乡村风貌保存良好。沭阳人热情好客，保留了许多传统手工技艺与地方小吃，既有田园气息，又在逐步融入现代商业流通。近年来，凭借优质的农产品和便捷的交通，沭阳的特色产业逐渐走向全国市场，成为游客品尝乡味、采购土特产的好去处。
+			</p>
+		</div>
+		<div class="col-md-4 text-center">
+			<img src="images/dibiao.png" alt="沂河大桥" class="round-img">
+		</div>
+	</section>
+
+	<!-- 网站介绍 400字 -->
+	<section class="mb-4">
+		<h3>关于“老家来人了”</h3>
+		<p>
+			老家来人了（laojialairenle.com）致力于搭建一个面向全国和海内外的沭阳特产展示与交易平台。我们深知家乡的每一份滋味都承载着记忆与情感，因此以“正宗、优质、可溯源”为准则，优选来自沭阳及周边地区的果蔬、花卉、手工制品和传统美食。平台与当地种植户、合作社、手工坊建立合作，力求在保证原产地品质的同时，为消费者提供透明的产地介绍与贴心的售后服务。
+		</p>
+		<p>
+			在经营理念上，我们倡导可持续与乡村振兴，通过电商与本地生产的有机结合，帮助优质的农产品打开市场通道，提升农户收益；同时为城市消费者提供便捷的方式，品尝到真正来自老家的味道。未来，老家来人了将持续丰富商品品类，完善品质检验与配送体系，并通过内容与社区建设，让更多人了解沭阳的风土人情与匠人故事。
+		</p>
+	</section>
+
+	<!-- 联系方式与表单 -->
+	<section class="row">
+		<div class="col-md-6 mb-4">
+			<h4>联系方式</h4>
+			<ul class="list-unstyled">
+				<li><strong>联系人：</strong>何先生</li>
+				<li><strong>邮箱：</strong><a href="mailto:924683681@qq.com">924683681@qq.com</a></li>
+				<li><strong>电话：</strong>133-2222-30101</li>
+			</ul>
+
+			<h5>信息提交</h5>
+			<form id="infoForm" class="mb-3">
+				<div class="mb-2">
+					<input class="form-control" name="name" placeholder="姓名" required>
+				</div>
+				<div class="mb-2">
+					<input class="form-control" name="phone" placeholder="电话" required>
+				</div>
+				<div class="mb-2">
+					<input class="form-control" name="email" placeholder="邮箱">
+				</div>
+				<div class="mb-2">
+					<textarea class="form-control" name="message" rows="3" placeholder="需求/留言"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">提交信息</button>
+			</form>
+		</div>
+	</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer-fixed text-center">
+	<div class="container">
+		<small>© 2025 老家来人了 laojialairenle.com · 粤ICP备xxxxxxx号</small>
+	</div>
+</footer>
+
+<!-- jQuery + Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+	// 简单表单处理（示例：阻止默认提交，显示提示）
+	$('#infoForm').on('submit', function(e){
+		e.preventDefault();
+		const name = this.name.value || '匿名';
+		alert('已收到您的信息，感谢 ' + name + ' 的提交！(演示页面，无后端)');
+		this.reset();
+	});
+	$('#feedbackForm').on('submit', function(e){
+		e.preventDefault();
+		alert('感谢您的反馈！我们会尽快查看。(演示页面，无后端)');
+		this.reset();
+	});
+</script>
+
+</body>
+</html>
