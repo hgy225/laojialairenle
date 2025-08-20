@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界登山挑战</title>
+    <!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#"><i class="fas fa-mountain"></i> 世界登山挑战</a>
+    </nav>
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- 游戏主界面 -->
+            <div class="col-md-9" id="gameArea">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 id="mountainTitle">请选择要攀登的山峰</h4>
+                        <div>
+                            <span class="badge badge-info">时间: <span id="gameTimer">00:00</span></span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="mountainSelection" class="text-center">
+                            <h5 class="mb-4">选择您的登山挑战</h5>
+                            <p class="text-muted">从简单到困难，逐级挑战世界名山</p>
+                            <button class="btn btn-primary btn-lg" onclick="showLevelSelection()">
+                                <i class="fas fa-list"></i> 选择山峰
+                            </button>
+                        </div>
+                        
+                        <div id="climbingView" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img id="mountainImage" src="" class="img-fluid rounded" alt="Mountain">
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>海拔高度:</strong> <span id="mountainHeight"></span> 米</p>
+                                    <p><strong>难度等级:</strong> <span id="mountainDifficulty"></span></p>
+                                    <p><strong>简介:</strong></p>
+                                    <p id="mountainStory"></p>
+                                    
+                                    <div class="mt-3">
+                                        <label>攀登进度:</label>
+                                        <div class="progress">
+                                            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%">
+                                                0%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                        <label>能量值:</label>
+                                        <div class="progress">
+                                            <div id="energyBar" class="progress-bar bg-success" role="progressbar" style="width: 100%">
+                                                100 / 100
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5>沿途风景</h5>
+                                <div id="sceneryCarousel" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" id="sceneryImages">
+                                        <!-- 风景图片将通过JavaScript动态添加 -->
+                                    </div>
+                                    <a class="carousel-control-prev" href="#sceneryCarousel" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#wolf.jpeg" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 战斗界面 -->
+                        <div id="combatView" class="text-center" style="display: none;">
+                            <h3 class="text-danger"><i class="fas fa-exclamation-triangle"></i> 遭遇野生动物!</h3>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <img id="playerImage" src="https://cdn-icons-png.flaticon.com/512/846/846204.png" 
+                                                 class="img-fluid mb-3" style="max-height: 150px;">
+                                            <h5>登山者</h5>
+                                            <p>生命值: <span id="playerHealth">100</span></p>
+                                            <div class="progress">
+                                                <div id="playerHealthBar" class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <img id="enemyImage" src="" class="img-fluid mb-3" style="max-height: 150px;">
+                                            <h5 id="enemyName"></h5>
+                                            <p>生命值: <span id="enemyHealth"></span></p>
+                                            <div class="progress">
+                                                <div id="enemyHealthBar" class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button class="btn btn-danger btn-lg mr-2" onclick="playerAttack()">
+                                    <i class="fas fa-fist-raised"></i> 攻击
+                                </button>
+                                <button class="btn btn-info btn-lg mr-2" onclick="playerDefend()">
+                                    <i class="fas fa-shield-alt"></i> 防御
+                                </button>
+                                <button class="btn btn-warning btn-lg" onclick="tryToFlee()">
+                                    <i class="fas fa-running"></i> 逃跑
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 问答界面 -->
+                        <div id="quizView" style="display: none;">
+                            <h3 class="text-center mb-4">知识问答</h3>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 id="quizQuestion"></h5>
+                                    <div class="form-group mt-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quizAnswer" id="optionA" value="A">
+                                            <label class="form-check-label" for="optionA" id="labelA"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quizAnswer" id="optionB" value="B">
+                                            <label class="form-check-label" for="optionB" id="labelB"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quizAnswer" id="optionC" value="C">
+                                            <label class="form-check-label" for="optionC" id="labelC"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quizAnswer" id="optionD" value="D">
+                                            <label class="form-check-label" for="optionD" id="labelD"></label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="submitAnswer()">提交答案</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏结束界面 -->
+                        <div id="gameOverView" class="text-center" style="display: none;">
+                            <h2 id="gameOverTitle"></h2>
+                            <p id="gameOverMessage"></p>
+                            <button class="btn btn-primary btn-lg" onclick="restartGame()">
+                                <i class="fas fa-redo"></i> 重新开始
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 玩家状态和操作面板 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-user"></i> 玩家状态</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>当前等级:</strong> <span id="currentLevel">1</span></p>
+                        <p><strong>经验值:</strong> <span id="experience">0</span></p>
+                        <p><strong>失败次数:</strong> <span id="failures">0</span>/3</p>
+                        <p><strong>背包:</strong></p>
+                        <ul id="inventory" class="list-unstyled">
+                            <li><i class="fas fa-bread-slice"></i> 食物 x<span id="foodCount">3</span></li>
+                            <li><i class="fas fa-wine-bottle"></i> 水 x<span id="waterCount">2</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5><i class="fas fa-tools"></i> 操作面板</h5>
+                    </div>
+                    <div class="card-body">
+                        <button id="climbBtn" class="btn btn-success btn-block mb-2" onclick="climb()" disabled>
+                            <i class="fas fa-hiking"></i> 继续攀登
+                        </button>
+                        <button id="findEnergyBtn" class="btn btn-info btn-block mb-2" onclick="findEnergy()" disabled>
+                            <i class="fas fa-search"></i> 寻找补给
+                        </button>
+                        <button id="useFoodBtn" class="btn btn-warning btn-block mb-2" onclick="useItem('food')" disabled>
+                            <i class="fas fa-utensils"></i> 使用食物 (+20能量)
+                        </button>
+                        <button id="useWaterBtn" class="btn btn-info btn-block" onclick="useItem('water')" disabled>
+                            <i class="fas fa-tint"></i> 使用水 (+15能量)
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5><i class="fas fa-trophy"></i> 挑战进度</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="levelProgress">
+                            <!-- 等级进度将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 等级选择模态框 -->
+    <div class="modal fade" id="levelModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">选择山峰等级</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="accordion" id="levelsAccordion">
+                        <!-- 等级选项将通过JavaScript动态添加 -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/mountains.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script>
+        // 初始化游戏
+        $(document).ready(function() {
+            initGame();
+        });
+    </script>
+</body>
+</html>

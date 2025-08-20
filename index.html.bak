@@ -104,27 +104,26 @@
   </div>
 
   <script>
-  const container = document.getElementById("circle");
-  const items = container.querySelectorAll(".sector-content");
+    const container = document.getElementById("circle");
+    const items = container.querySelectorAll(".sector-content");
 
-  const cx = 250; // 圆心 x
-  const cy = 250; // 圆心 y
-  const radius = 170; // 放置图标的半径
+    const cx = 250; // 圆心 x
+    const cy = 250; // 圆心 y
+    const radius = 170; // 放置图标的半径（可调节）
 
-  const count = items.length;
-  const sectorAngle = 360 / count;
+    const count = items.length;
+    const sectorAngle = 360 / count;
 
-  items.forEach((item, i) => {
-    // 每个扇区中心角度 (修正 -90° 让起点在正上方)
-    const angle = (i * sectorAngle + sectorAngle / 2 - 90) * Math.PI / 180;
+    items.forEach((item, i) => {
+      // 每个扇区中心角度（加上 sectorAngle/2 让它位于正中）
+      const angle = (i * sectorAngle + sectorAngle / 2) * Math.PI / 180;
 
-    const x = cx + radius * Math.cos(angle);
-    const y = cy + radius * Math.sin(angle);
+      const x = cx + radius * Math.cos(angle);
+      const y = cy + radius * Math.sin(angle);
 
-    item.style.left = `${x}px`;
-    item.style.top = `${y}px`;
-  });
-</script>
-
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+    });
+  </script>
 </body>
 </html>
